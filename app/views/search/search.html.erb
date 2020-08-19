@@ -1,2 +1,11 @@
-<h1>Search#search</h1>
-<p>Find me in app/views/search/search.html.erb</p>
+<%= form_with url: root_path, method: :get, local: true do |f| %>
+    <%= f.text_field :keyword, class: 'search_form' %>
+<% end %>
+
+<% if @item %>
+    <% @item.first(20).each do |item| %>
+        <p><%= item["Item"]["title"] %></p>
+        <img src="<%= item["Item"]["largeImageUrl"] %>" >
+    <% end %>
+<% end %>
+
