@@ -1,11 +1,25 @@
-<%= form_with url: root_path, method: :get, local: true do |f| %>
-    <%= f.text_field :keyword, class: 'search_form' %>
-<% end %>
-
-<% if @item %>
-    <% @item.first(20).each do |item| %>
-        <p><%= item["Item"]["title"] %></p>
-        <img src="<%= item["Item"]["largeImageUrl"] %>" >
+<div class="m-5">
+    <%= form_with url: root_path, method: :get, local: true, class: 'input-group' do |f| %>
+        <%= f.text_field :keyword, class: 'form-control mr-4' %>
+        <%= f.submit '検索', class: "btn btn-success" %>
     <% end %>
-<% end %>
+</div>
+
+<div class="row d-flex justify-content-center">
+    <% if @item %>
+        <% @item.first(20).each do |item| %>
+                <div class="card col-sm-3 m-4">
+                    <img class="mh-70 mx-auto p-2" src="<%= item["Item"]["largeImageUrl"] %>">
+                    <div class="mh-30 border-top p-2">
+                        <h5><%= item["Item"]["title"] %></h5>
+                        <div>
+                            レビュー：<%= item["Item"]["reviewAverage"] %>
+                            値段：<%= item["Item"]["itemPrice"] %>
+                        </div>
+                        <a class="card-link" href="<%= item["Item"]["itemUrl"] %>">商品ページへ</a>
+                    </div>
+                </div> 
+        <% end %>
+    <% end %>
+</div>
 

@@ -10,7 +10,8 @@ class SearchController < ApplicationController
         'applicationId' => '1005768067187627415',
         'booksGenreId'  => '001',
         'hits'          => '20',
-        'sort'          => 'sales'
+        'sort'          => 'sales',
+        'size'          => '1'
       }
       uri = URI(API_BASE_URL + '?' + params.map{|k,v| "#{k}=#{v}"}.join('&'))
       response_json = Net::HTTP.get(uri)
